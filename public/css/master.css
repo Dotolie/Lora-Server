@@ -1,0 +1,47 @@
+/* public/css/master.css */
+
+.contact .contact-form {
+  max-width: 400px;
+}
+
+.contact h2{
+  color: tomato;
+}
+.contact .contact-form label,
+.contact-show label{
+  display: inline-block;
+  width: 120px;
+}
+.contact .contact-menu form{
+ display: inline-block;
+}
+
+table.type02 {
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+  line-height: 1.0;
+  border-top: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  margin : 2px 1px;
+}
+table.type02 th {
+  width: 150px;
+  padding: 10px;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: top;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-top: 1px solid #fff;
+  border-left: 1px solid #fff;
+  background: #eee;
+}
+table.type02 td {
+  width: 350px;
+  padding: 4px;
+  text-align: center;
+  vertical-align: top;
+  border-right: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}  

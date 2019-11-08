@@ -1,0 +1,59 @@
+<!-- views/contacts/edit.ejs -->
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <% include ../partials/head %>
+ </head>
+ <body>
+  <% include ../partials/nav %>
+
+  <div class="container contact contact-edit">
+   <div class="contact-menu">
+    <a class="btn btn-default" href="/sensing/<%= rows[0].IDX %>">Back</a>
+   </div>
+   <h2>Edit</h2>
+   <form class="contact-form" action="/sensing/<%= rows[0].IDX %>?_method=put" method="post">    
+    <div class="form-group">
+     <label for="RSD">RSD</label>
+     <input class="form-control" type="text" id="RSD" name="RSD" value="<%= rows[0].RSD %>">
+    </div>
+    <div class="form-group">
+     <label for="IA">IA</label>
+     <input class="form-control" type="text" id="IA" name="IA" value="<%= rows[0].IA %>">
+    </div>
+    <div class="form-group">
+     <label for="RSU">RSU</label>
+     <input class="form-control" type="text" id="RSU" name="RSU" value="<%= rows[0].RSU %>">
+    </div>
+    <div class="form-group">
+     <label for="SEQ">SEQ</label>
+     <input class="form-control" type="text" id="SEQ" name="SEQ" value="<%= rows[0].SEQ %>">
+    </div>
+    <div class="form-group">
+     <label for="REGDATE">DATE</label>
+     <input class="form-control" type="text" id="REGDATE" name="REGDATE" value="<%= rows[0].REGDATE %>">
+    </div>
+    <div class="form-group">
+     <label for="CO2">CO2</label>
+     <input class="form-control" type="text" id="CO2" name="CO2" value="<%= rows[0].CO2 %>">
+    </div>
+    <div class="form-group">
+        <label for="RH">RH</label>
+        <input class="form-control" type="text" id="RH" name="RH" value="<%= rows[0].RH %>">
+       </div>
+       <div class="form-group">
+        <label for="TEMP">TEMP</label>
+        <input class="form-control" type="text" id="TEMP" name="TEMP" value="<%= rows[0].TEMP %>">
+       </div>
+       <div class="form-group">
+        <label for="CO2">BATT</label>
+        <input class="form-control" type="text" id="BATT" name="BATT" value="<%= rows[0].BATT %>">
+       </div>    
+    <div>
+     <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+   </div>
+  </form>
+ </body>
+</html>

@@ -1,0 +1,75 @@
+<!-- views/contacts/new.ejs -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %>
+  </head>
+  <body>
+    <% include ../partials/nav %>
+
+    <div class="container contact contact-new">
+      <div class="contact-menu">
+        <a class="btn btn-default" href="/sensing">Back</a>
+      </div>
+      <h2>New</h2>
+      <form class="contact-form" action="/sensing/new" method="post">
+        <div class="form-group">
+          <label for="RSD">RSd</label>
+          <input type="text" id="RSD" name="RSD" value="">
+        </div>
+        <div class="form-group">
+          <label for="IA">IA</label>
+          <input type="text" id="IA" name="IA" value="">
+        </div>
+        <div class="form-group">
+          <label for="RSU">RSu</label>
+          <input type="text" id="RSu" name="RSU" value="">
+        </div>
+        <div class="form-group">
+            <label for="SEQ">SEQ</label>
+            <input type="text" id="SEQ" name="SEQ" value="">
+        </div>        
+        <div class="form-group">
+            <label for="REGDATE">REGDATE</label>
+            <input type="text" id="REGDATE" name="REGDATE" value="">
+        </div>
+        <div class="form-group">
+            <label for="CO2">CO2</label>
+            <input type="text" id="CO2" name="CO2" value="">
+        </div>
+        <div class="form-group">
+            <label for="RH">RH</label>
+            <input type="text" id="RH" name="RH" value="">
+        </div>
+        <div class="form-group">
+            <label for="TEMP">Temp</label>
+            <input type="text" id="TEMP" name="TEMP" value="">
+        </div>
+        <div class="form-group">
+          <label for="PM1P0">PM1.0</label>
+          <input type="text" id="PM1P0" name="PM1P0" value="">
+        </div>        
+        <div class="form-group">
+          <label for="PM2P5">PM2.5</label>
+          <input type="text" id="PM2P5" name="PM2P5" value="">
+        </div>        
+        <div class="form-group">
+          <label for="PM4P0">PM4.0</label>
+          <input type="text" id="PM4P0" name="PM4P0" value="">
+        </div>        
+        <div class="form-group">
+          <label for="PM10P0">PM10.0</label>
+          <input type="text" id="PM10P0" name="PM10P0" value="">
+        </div>        
+        <div class="form-group">
+          <label for="BATT">Batt</label>
+          <input type="text" id="BATT" name="BATT" value="">
+        </div>
+        <div class="form-group">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

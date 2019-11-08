@@ -1,0 +1,89 @@
+<!-- views/contacts/index.ejs -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %> <!-- 1 -->
+  </head>
+  <body>
+    <% include ../partials/nav %> <!-- 2 -->
+
+    <div class="container contact contact-index">
+      <h2>Index</h2>
+      <ul class="list-group">
+        <table class="type02" >
+          <colgroup>
+            <col width="5%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="20%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="5%" />
+            <col width="5%" />
+          </colgroup>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>RSd</th>
+              <th>IA</th>
+              <th>RSu</th>
+              <th>SEQ</th>
+              <th>DATE</th>
+              <th>CO2</th>
+              <th>RH</th>
+              <th>Temp</th>
+              <th>PM1.0</th>
+              <th>PM2.5</th>
+              <th>PM4.0</th>
+              <th>PM10.0</th>
+              <th>Batt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!---
+              <% for(var i=0; i<rows.length; i++) { %>
+              <tr>
+                <td><a href=<% rows[i]._id %></a><%= rows[i].IDX %></td>
+                <td><%= rows[i].RSD %></td>
+                <td><%= rows[i].IA %></td>
+                <td><%= rows[i].RSU %></td>
+                <td><%= rows[i].SEQ %></td>
+                <td><%= rows[i].REGDATE %></td>
+                <td><%= rows[i].CO2 %></td>
+                <td><%= rows[i].RH %></td>
+                <td><%= rows[i].TEMP %></td>
+                <td><%= rows[i].BATT %></td>
+              </tr>
+              <% } %>
+              --->
+              <% rows.forEach(function(row) {%>
+                <tr>
+                  <td><a href="/sensing/<%= row.IDX %>"><%= row.IDX %></a></td>
+                  <td><%= row.RSD %></td>
+                  <td><a href="/sensing/read/<%= row.IA %>"><%= row.IA %></a></td>
+                  <td><%= row.RSU %></td>
+                  <td><%= row.SEQ %></td>
+                  <td><%= row.REGDATE %></td>
+                  <td><%= row.CO2 %></td>
+                  <td><%= row.RH %></td>
+                  <td><%= row.TEMP %></td>
+                  <td><%= row.PM1P0 %></td>
+                  <td><%= row.PM2P5 %></td>
+                  <td><%= row.PM4P0 %></td>
+                  <td><%= row.PM10P0 %></td>
+                  <td><%= row.BATT %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+        </table>
+      </ul>
+    </div>
+  </body>
+</html>

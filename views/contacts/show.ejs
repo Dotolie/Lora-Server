@@ -1,0 +1,61 @@
+<!-- views/contacts/show.ejs -->
+
+<!DOCTYPE html>
+<html>
+ <head>
+  <% include ../partials/head %>
+ </head>
+ <body>
+  <% include ../partials/nav %>
+
+  <div class="container contact contact-show">
+   <div class="contact-menu">
+    <a class="btn btn-default" href="/sensing">Back</a>
+    <a class="btn btn-default" href="/sensing/<%= rows[0].IDX %>/edit">Edit</a>
+    <form action="/sensing/<%= rows[0].IDX %>?_method=delete" method="post">
+     <a class="btn btn-default" href="#" onclick="confirm('Do you want to delete this?')?this.parentElement.submit():null;">Delete</a>
+    </form>
+   <div>
+   <h2>Show</h2>
+   <h3><%= rows[0].IDX %></h3>
+   <div>
+    <label>RSD</label><span><%= rows[0].RSD %></span>
+   </div>
+   <div>
+    <label>IA</label><span><%= rows[0].IA %></span>
+   </div>
+   <div>
+    <label>RSU</label><span><%= rows[0].RSU %></span>
+   </div>
+   <div>
+    <label>SEQ</label><span><%= rows[0].SEQ %></span>
+   </div>
+   <div>
+    <label>DATE</label><span><%= rows[0].REGDATE %></span>
+   </div>
+   <div>
+    <label>CO2 [ppm]</label><span><%= rows[0].CO2 %></span>
+   </div>
+   <div>
+    <label>RH [%]</label><span><%= rows[0].RH %></span>
+   </div>
+   <div>
+    <label>Temperature ['C]</label><span><%= rows[0].TEMP %></span>
+   </div>
+   <div>
+    <label>PM1.0 [ug/m3]</label><span><%= rows[0].PM1P0 %></span>
+   </div>
+   <div>
+    <label>PM2.5 [ug/m3]</label><span><%= rows[0].PM2P5 %></span>
+   </div>
+   <div>
+    <label>PM4.0 [ug/m3]</label><span><%= rows[0].PM4P0 %></span>
+   </div>
+   <div>
+    <label>PM10.0 [ug/m3]</label><span><%= rows[0].PM10P0 %></span>
+   </div>
+   <div>
+    <label>Battery [mV]</label><span><%= rows[0].BATT %></span>
+   </div>
+ </body>
+</html>
