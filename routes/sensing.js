@@ -18,13 +18,51 @@ pool.getConnection(function(err, connection) {
 router.get('/', function(req, res) {
     pool.getConnection(function(err, connection) {
         if(!err) {
-            var sql = "SELECT * FROM tb_sensors ORDER BY IDX DESC LIMIT 30";
+            var sql = "SELECT * FROM tb_sensors ORDER BY IDX DESC LIMIT 1000";
             connection.query( sql, function( err, rows) {
                 if( err) console.error( "err=" + err);
-        
-//                console.log('the row : ', rows);
-        
-                res.render("contacts/index", {rows:rows?rows:{}});
+
+                var X = [];
+                var Y = [];
+                var R = [];
+                var T = [];
+                var P1 = [];
+                var P2P5 = [];
+                var P4 = [];
+                var P10 = [];
+                for(var i=rows.length-1;i>=0 ; i--) {
+                    var dd = rows[i].REGDATE*1000;
+                    // console.log('----'+ rows[i].IDX + '=' + Date(dd) + '=' +  rows[i].REGDATE);
+                    X.push(dd);
+                    Y.push(rows[i].CO2);
+                    R.push(rows[i].RH);
+                    T.push(rows[i].TEMP);
+                    P1.push(rows[i].PM1P0);
+                    P2P5.push(rows[i].PM2P5);
+                    P4.push(rows[i].PM4P0);
+                    P10.push(rows[i].PM10P0);
+                };
+                // console.log('x='+dd);
+                // console.log('y='+Y);
+
+                res.render("contacts/graph", {dataX:X, dataY:Y, dataR:R, dataT:T, dataP1:P1, dataP2P5:P2P5, dataP4:P4, dataP10:P10});
+                // res.render("contacts/index", {rows:rows});
+            });
+        }
+        connection.release();  
+    });
+});
+
+router.get('/index', function(req, res) {
+    pool.getConnection(function(err, connection) {
+        if(!err) {
+            var sql = "SELECT * FROM tb_sensors ORDER BY IDX DESC LIMIT 100";
+            connection.query( sql, function( err, rows) {
+                if( err) console.error( "err=" + err);
+                for(var i=rows.length-1;i>=0 ; i--) {
+                    rows[i].REGDATE = new Date(rows[i].REGDATE*1000);
+                }
+                res.render("contacts/index", {rows:rows});
             });
         }
         connection.release();  

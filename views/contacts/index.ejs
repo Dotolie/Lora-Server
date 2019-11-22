@@ -47,22 +47,6 @@
             </tr>
           </thead>
           <tbody>
-            <!---
-              <% for(var i=0; i<rows.length; i++) { %>
-              <tr>
-                <td><a href=<% rows[i]._id %></a><%= rows[i].IDX %></td>
-                <td><%= rows[i].RSD %></td>
-                <td><%= rows[i].IA %></td>
-                <td><%= rows[i].RSU %></td>
-                <td><%= rows[i].SEQ %></td>
-                <td><%= rows[i].REGDATE %></td>
-                <td><%= rows[i].CO2 %></td>
-                <td><%= rows[i].RH %></td>
-                <td><%= rows[i].TEMP %></td>
-                <td><%= rows[i].BATT %></td>
-              </tr>
-              <% } %>
-              --->
               <% rows.forEach(function(row) {%>
                 <tr>
                   <td><a href="/sensing/<%= row.IDX %>"><%= row.IDX %></a></td>
