@@ -1,0 +1,196 @@
+<!-- views/contacts/graph.ejs -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/head %> <!-- 1 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.js"></script>
+    <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <script type="text/javascript">
+        var co2 =  [];
+        var rh = [];
+        var temp = [];
+        var p1 = [];
+        var p2p5 = [];
+        var p4 = [];
+        var p10 = [];
+        var dataX = [<%= dataX %>];
+        var dataY = [<%= dataY %>];
+        var dataR = [<%= dataR %>];
+        var dataT = [<%= dataT %>];
+        var dataP1 = [<%= dataP1 %>];
+        var dataP2P5 = [<%= dataP2P5 %>];
+        var dataP4 = [<%= dataP4 %>];
+        var dataP10 = [<%= dataP10 %>];
+        // console.log('dps='+dataX +" : " + dataY);
+
+        for(var i=0;i<dataX.length;i++) {
+          var dat = new Date(dataX[i]);
+          var co2data = { x:dat, y:dataY[i]};
+          var rhdata =  { x:dat, y:dataR[i]};
+          var tdata = { x:dat, y:dataT[i]};
+          var p1data = { x:dat, y:dataP1[i]};
+          var p2p5data = { x:dat, y:dataP2P5[i]};
+          var p4data = { x:dat, y:dataP4[i]};
+          var p10data = { x:dat, y:dataP10[i]};
+          co2.push(co2data);
+          rh.push(rhdata);
+          temp.push(tdata);
+          p1.push(p1data);
+          p2p5.push(p2p5data);
+          p4.push(p4data);
+          p10.push(p10data);
+        };
+
+
+        window.onload = function () {
+          var chart = new CanvasJS.Chart("chartContainer", {
+          animationEnabled: false,
+          zoomEnabled: true,
+          title:{
+            text: "CO2, RH & Temp"
+          },
+
+          axisY: [{
+            title: "CO2 [ppm]",
+            valueFormatString: "0 ",
+            lineColor: "#C24642",
+            tickColor: "#C24642",
+            labelFontColor: "#C24642",
+            titleFontColor: "#C24642",            
+            suffix: "",
+            stripLines: [{
+              value: 400,
+              label: "AiQ 1",
+              color: "green",
+              labelFontColor: "green"
+            },
+            {
+              value: 600,
+              label: "AiQ 2",
+              color: "orange",
+              labelFontColor: "orange"
+            }]
+          },
+          {
+            title: "RH [%]",
+            lineColor: "#369EAD",
+            tickColor: "#369EAD",
+            labelFontColor: "#369EAD",
+            titleFontColor: "#369EAD",
+            suffix: ""
+          }],
+          axisY2: {
+            title: "Temp [°C]",
+            valueFormatString: "0 ",
+            lineColor: "#7F6084",
+            tickColor: "#7F6084",
+            labelFontColor: "#7F6084",
+            titleFontColor: "#7F6084",
+            suffix : ""
+          },
+          toolTip: {
+            shared: true
+          },
+          legend: {
+            cursor: "pointer",
+          },          
+          data: [{
+            name: "CO2",
+            color: "#C24642",
+            showInLegend: true,
+            axisYIndex: 0,
+		        yValueFormatString: "#,###.# ppm",
+		        xValueFormatString: "YYYY-MM-DD hh:mm:ss",
+            type: "spline",
+            showInLegend: true,
+            dataPoints:  co2
+          },
+          {
+            name: "RH",
+            type: "spline",
+            color: "#369EAD",
+            yValueFormatString: "#.# '%'",
+            xValueFormatString: "YYYY-MM-DD hh:mm:ss",
+            axisYIndex: 1,
+            showInLegend: true,
+            dataPoints: rh
+          },
+          {
+            name: "Temp",
+            axisYType: "secondary",
+		        yValueFormatString: "#.# °C",
+            xValueFormatString: "YYYY-MM-DD hh:mm:ss",
+            color: "#7F6084",
+            type: "spline",
+            showInLegend: true,
+            dataPoints:  temp
+          }]
+        });
+
+        var chart2 = new CanvasJS.Chart("chartContainer2", {
+          animationEnabled: false,
+          zoomEnabled: true,
+          title:{
+            text: "Particulate Matter"
+          },
+          legend: {
+            cursor: "pointer",
+            fontSize: 16,
+
+          },
+          axisX: {
+            valueFormatString: "YYYY-MM-DD hh:mm:ss"
+          },
+          axisY: {
+            title: "Particles [ug/m3]",
+            valueFormatString: "0 ",
+          },
+          toolTip:{
+            shared: true
+          },
+          data: [{
+            name: "PM1.0",
+            xValueFormatString: "YYYY-MM-DD hh:mm:ss",
+		        yValueFormatString: "#,###.## ug/m3",
+            type: "spline",
+            showInLegend: true,
+            dataPoints:  p1
+          },
+          {
+            name: "PM2.5",
+		        yValueFormatString: "#,###.## ug/m3",
+            type: "spline",
+            showInLegend: true,
+            dataPoints:  p2p5
+          },
+          {
+            name: "PM4.0",
+		        yValueFormatString: "#,###.## ug/m3",
+            type: "spline",
+            showInLegend: true,
+            dataPoints:  p4
+          },
+          {
+            name: "PM10.",
+		        yValueFormatString: "#,###.## ug/m3",
+            type: "spline",
+            showInLegend: true,
+            dataPoints:  p10
+          }
+          ]
+        });
+
+        chart.render();
+        chart2.render();
+      }
+    </script>
+  </head>
+  <body>
+    <% include ../partials/nav %> <!-- 2 -->
+    <div id="chartContainer" style="height: 300px; width: 90%;"></div>
+    <p></p>
+    <div id="chartContainer2" style="height: 300px; width: 87%;"></div>
+    </div>
+  </body>
+</html>
